@@ -1,6 +1,6 @@
 # Structure URL Matcher
 
-Discrepencies between how Structure (buildwithstructure.com) and ExpressionEngine manage URLs can be annoying when it comes to importing data, doing redirects, letting clients loose on your site etc.
+Discrepancies between how Structure (buildwithstructure.com) and ExpressionEngine manage URLs can be annoying when it comes to importing data, doing redirects, letting clients loose on your site etc.
 
 ## What it does
 * Identifies which Structure URLs do not match the default EE URL Title
