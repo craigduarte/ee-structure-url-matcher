@@ -26,7 +26,7 @@ class Structure_url_matcher_mcp {
 		$this->_base_url = BASE.AMP.'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=structure_url_matcher';
 		
 		$this->EE->cp->set_right_nav(array(
-			'module_home'	=> $this->_base_url,
+			'module_home'	=> $this->_base_url
 			// Add more right nav items here.
 		));
 
@@ -48,9 +48,13 @@ class Structure_url_matcher_mcp {
 
 		$unmatched_entries = ee()->sum_functions->get_unmatched_entries();
 
-		$this->data['unmatched_entries'] = $unmatched_entries;
-
-		return $this->EE->load->view('index', $this->data, TRUE);	
+		if(empty($unmatched_entries)) {
+			$this->data['view_content'] = lang('no_matches');
+			return $this->EE->load->view('generic', $this->data, TRUE);
+		} else {
+			$this->data['unmatched_entries'] = $unmatched_entries;
+			return $this->EE->load->view('index', $this->data, TRUE);
+		}	
 	}
 
 	public function update_structure_urls()
@@ -60,6 +64,7 @@ class Structure_url_matcher_mcp {
 		$match_entries = ee()->sum_functions->set_structure_url_as_url_title();
 
 		$this->data['view_content'] = '<p>URLs updated.</p>';
+
 		return $this->EE->load->view('generic', $this->data, TRUE);
 	}
 
